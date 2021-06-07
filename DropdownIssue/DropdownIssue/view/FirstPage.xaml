@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DropdownIssue.view.FirstPage"
+             Title="Picker Demo">
+    <ContentPage.Content>
+        <StackLayout  Margin="50,50,50,50">
+            <CollectionView SelectionMode="Single"
+                            x:Name="MycollectionView"
+                            ItemsSource="{Binding Students}"
+                            VerticalScrollBarVisibility="Always">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Entry Grid.Row="0"
+                                   Text="{Binding Name}"
+                                   IsVisible="{Binding ItemVisibility}"
+                                   x:Name="FirstLabel"
+                                   FontAttributes="Bold"
+                                   FontSize="20" />
+                            <Entry Grid.Row="1"
+                                   x:Name="SecondLabel"
+                                   Text="{Binding Surname}"
+                                   IsVisible="{Binding ItemVisibility}"
+                                   FontAttributes="Bold"
+                                   FontSize="20" />
+                            <Picker x:Name="Countries"
+                                    ItemsSource="{Binding Country}"
+                                    IsVisible="{Binding ItemVisibility}"
+                                    SelectedItem="{Binding SelectedCountry}"
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Title="Select Contry"
+                                    FontSize="15">
+                            </Picker>
+                            <Picker x:Name="States"
+                                    ItemsSource="{Binding State}"
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    IsVisible="{Binding ItemVisibility}"
+                                    SelectedItem="{Binding SelectedState}"
+                                    Grid.ColumnSpan="2"
+                                    Title="Select State"
+                                    FontSize="15">
+                            </Picker>
+                            <Picker ItemsSource="{Binding City}"
+                                    IsVisible="{Binding ItemVisibility}"
+                                    SelectedItem="{Binding SelectedCity}"
+                                    x:Name="City"
+                                    Grid.Row="4"
+                                    WidthRequest="300"
+                                    Title="Select City"
+                                    FontSize="15">
+                            </Picker>
+                            <Button Grid.Row="5"
+                                    Text="{Binding ButtonText}"
+                                    Command="{Binding ControlVisibility}"></Button>
+                            <StackLayout HeightRequest="30"
+                                         Grid.Row="6">
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button x:Name="addMore"
+                    Text="Add More "
+                    Command="{Binding AddMore}"
+                    HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
